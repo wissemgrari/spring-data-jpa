@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
 @Entity(name = "Course")
@@ -44,6 +47,11 @@ public class Course {
     columnDefinition = "TEXT"
   )
   private String department;
+
+  @ManyToMany(
+    mappedBy = "courses"
+  )
+  private List<Student> students = new ArrayList<>();
 
   public Course(String name, String department) {
     this.name = name;

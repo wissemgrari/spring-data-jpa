@@ -1,15 +1,14 @@
 package com.wissem;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.time.LocalDateTime;
 
 @Entity(name = "Enrollment")
 @Table(name = "enrollment")
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 public class Enrollment {
@@ -27,8 +26,23 @@ public class Enrollment {
   @JoinColumn(name = "course_id")
   private Course course;
 
-  public Enrollment(Student student, Course course) {
+  @Column(
+    name = "created_at",
+    nullable = false,
+    columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
+  )
+  private LocalDateTime createdAt;
+
+  public Enrollment(EnrollmentId id ,Student student, Course course, LocalDateTime createdAt) {
+    this.id = id;
     this.student = student;
     this.course = course;
+    this.createdAt = createdAt;
+  }
+
+  public Enrollment(Student student, Course course, LocalDateTime createdAt) {
+    this.student = student;
+    this.course = course;
+    this.createdAt = createdAt;
   }
 }

@@ -34,8 +34,8 @@ public class Application {
       StudentIdCard studentIdCard = new StudentIdCard("123456789", student);
       student.setStudentIdCard(studentIdCard);
 
-      student.enrollToCourse(new Course("Computer Science", "IT"));
-      student.enrollToCourse(new Course("Spring Data JPA", "IT"));
+//      student.enrollToCourse(new Course("Computer Science", "IT"));
+//      student.enrollToCourse(new Course("Spring Data JPA", "IT"));
 
       studentRepository.save(student);
 

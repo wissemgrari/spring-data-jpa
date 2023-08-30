@@ -4,18 +4,17 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
-@Entity(name = "Course")
-@Table(name = "course")
 @NoArgsConstructor
 @Getter
 @Setter
+@Entity(name = "Course")
+@Table(name = "course")
 public class Course {
 
   @Id
@@ -48,10 +47,25 @@ public class Course {
   )
   private String department;
 
-  @ManyToMany(
-    mappedBy = "courses"
+//  @ManyToMany(
+//    mappedBy = "courses"
+//  )
+//  private List<Student> students = new ArrayList<>();
+
+  @OneToMany(
+    mappedBy = "course",
+    cascade = {CascadeType.PERSIST, CascadeType.REMOVE}
   )
-  private List<Student> students = new ArrayList<>();
+  private List<Enrollment> enrollments;
+
+  public void addEnrollment(Enrollment enrollment) {
+    if(!enrollments.contains(enrollment)) {
+      enrollments.add(enrollment);
+    }
+  }
+  public void removeEnrollment(Enrollment enrollment) {
+    enrollments.remove(enrollment);
+  }
 
   public Course(String name, String department) {
     this.name = name;

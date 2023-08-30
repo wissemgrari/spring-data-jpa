@@ -18,7 +18,7 @@ public class Application {
   }
 
   @Bean
-  CommandLineRunner commandLineRunner(StudentRepository studentRepository, StudentIdCardRepository studentIdCardRepository) {
+  CommandLineRunner commandLineRunner(StudentRepository studentRepository) {
     return args -> {
       Faker faker =  new Faker();
 
@@ -34,8 +34,8 @@ public class Application {
       StudentIdCard studentIdCard = new StudentIdCard("123456789", student);
       student.setStudentIdCard(studentIdCard);
 
-      student.enrolToCourse(new Course("Computer Science", "IT"));
-      student.enrolToCourse(new Course("Spring Data JPA", "IT"));
+      student.enrollToCourse(new Course("Computer Science", "IT"));
+      student.enrollToCourse(new Course("Spring Data JPA", "IT"));
 
       studentRepository.save(student);
 

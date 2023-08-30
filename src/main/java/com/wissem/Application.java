@@ -37,6 +37,18 @@ public class Application {
 //      student.enrollToCourse(new Course("Computer Science", "IT"));
 //      student.enrollToCourse(new Course("Spring Data JPA", "IT"));
 
+      student.addEnrollment(new Enrollment(
+        new EnrollmentId(1L, 1L),
+        student,
+        new Course("Computer Science", "IT")
+      ));
+
+      student.addEnrollment(new Enrollment(
+        new EnrollmentId(1L, 2L),
+        student,
+        new Course("Spring Data JPA", "IT")
+      ));
+
       studentRepository.save(student);
 
       studentRepository.findById(1L)
